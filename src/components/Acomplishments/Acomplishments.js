@@ -7,7 +7,8 @@ const data = [
   { number: "Analytics", text: 'Linkedin Learning '},
   { number:"STCW", text: 'Joemarine Institute ', },
   { number: "Member", text: 'Nigerian Society of Engineers ', },
-  { number: "CyberSecurity", text: 'CISCO Networking Academy ', }
+  { number: "CyberSecurity", text: 'CISCO Networking Academy ', },
+  { number: "Mickensy Academy ", text: 'MickensyForward Badge ', }
 ];
 
 const Acomplishments = () => (
