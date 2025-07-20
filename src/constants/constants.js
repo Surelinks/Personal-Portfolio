@@ -57,7 +57,7 @@ export const projects = [
 
 export const TimeLineData = [
   { year: 2017, text: 'BSc. Electrical & Electronics Engineering - Federal University of Technology Owerri' },
-  { year: 2018, text: 'Data Analyst - Transmission Company of Nigeria (TCN)' },
+  { year: 2018, text: 'Data Analyst - Transmission Infrastructure' },
   { year: 2019, text: 'Operations Manager - Surelink Computers Ltd' },
   { year: 2020, text: 'IBM Applied AI Professional Certificate & Cloud Computing Specialization' },
   { year: 2021, text: 'Founded Tech Consulting Practice & Advanced Cybersecurity Certifications' },

@@ -6,8 +6,8 @@ const Home = () => {
     <>
       <Head>
         <title>Ezenwanne Kenneth - Power Systems Engineer & Software Developer | Portfolio</title>
-        <meta name="description" content="Ezenwanne Kenneth - Power Systems Engineer at TCN and Software Developer specializing in blockchain, AI, cybersecurity, and full-stack development. MS Software Engineering student at Quantic School." />
-        <meta name="keywords" content="Ezenwanne Kenneth, Power Systems Engineer, Software Developer, Blockchain, Ethereum, Smart Contracts, AI, Cybersecurity, React, Node.js, Lagos Nigeria, TCN, SCADA" />
+        <meta name="description" content="Ezenwanne Kenneth - Power Systems Engineer and Software Developer specializing in critical infrastructure, blockchain, AI, and cybersecurity. BSc Electrical Engineering, MS Software Engineering student at Quantic School." />
+        <meta name="keywords" content="Ezenwanne Kenneth, Power Systems Engineer, Software Developer, Critical Infrastructure, Blockchain, Ethereum, Smart Contracts, AI, Cybersecurity, React, Node.js, Nigeria, BSc Electrical Engineering, SCADA" />
         <meta name="author" content="Ezenwanne Kenneth" />
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -22,7 +22,7 @@ const Home = () => {
       }}>
         {/* Header */}
         <header style={{
-          padding: '1.5rem 2rem',
+          padding: 'clamp(1rem, 2vw, 1.5rem) clamp(1rem, 4vw, 2rem)',
           borderBottom: '1px solid rgba(255,255,255,0.08)',
           position: 'sticky',
           top: 0,
@@ -38,19 +38,24 @@ const Home = () => {
             margin: '0 auto'
           }}>
             <div style={{ 
-              fontSize: '1.5rem', 
+              fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', 
               fontWeight: '700', 
               color: '#ffffff',
               fontFamily: 'JetBrains Mono, monospace'
             }}>
               EK.
             </div>
-            <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
+            <div style={{ 
+              display: 'flex', 
+              gap: 'clamp(1rem, 3vw, 2.5rem)', 
+              alignItems: 'center',
+              flexWrap: 'wrap'
+            }}>
               <a href="#about" style={{ 
                 color: 'rgba(255,255,255,0.7)', 
                 textDecoration: 'none', 
                 fontWeight: '500',
-                fontSize: '1.1rem',
+                fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
                 transition: 'color 0.2s ease',
                 ':hover': { color: '#ffffff' }
               }}>About</a>
@@ -58,28 +63,28 @@ const Home = () => {
                 color: 'rgba(255,255,255,0.7)', 
                 textDecoration: 'none', 
                 fontWeight: '500',
-                fontSize: '1.1rem'
+                fontSize: 'clamp(0.9rem, 2vw, 1.1rem)'
               }}>Expertise</a>
               <a href="#timeline" style={{ 
                 color: 'rgba(255,255,255,0.7)', 
                 textDecoration: 'none', 
                 fontWeight: '500',
-                fontSize: '1.1rem'
+                fontSize: 'clamp(0.9rem, 2vw, 1.1rem)'
               }}>Experience</a>
               <a href="#projects" style={{ 
                 color: 'rgba(255,255,255,0.7)', 
                 textDecoration: 'none', 
                 fontWeight: '500',
-                fontSize: '1.1rem'
+                fontSize: 'clamp(0.9rem, 2vw, 1.1rem)'
               }}>Projects</a>
               <a href="#contact" style={{ 
-                padding: '0.75rem 1.5rem',
+                padding: 'clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 2.5vw, 1.5rem)',
                 background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
                 color: '#ffffff',
                 textDecoration: 'none',
                 borderRadius: '6px',
                 fontWeight: '500',
-                fontSize: '1.1rem',
+                fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
                 transition: 'all 0.2s ease'
               }}>Contact</a>
             </div>
@@ -88,48 +93,46 @@ const Home = () => {
 
         {/* Hero Section - Professional Layout */}
         <section id="about" style={{ 
-          padding: '8rem 2rem',
+          padding: 'clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem)',
           maxWidth: '1400px',
           margin: '0 auto',
-          marginBottom: '4rem'
+          marginBottom: 'clamp(2rem, 4vw, 4rem)'
         }}>
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'minmax(320px, 400px) 1fr', 
-            gap: '3rem', 
-            alignItems: 'start',
-            '@media (max-width: 768px)': {
-              gridTemplateColumns: '1fr',
-              gap: '2rem'
-            }
-          }}>
+            gridTemplateColumns: 'minmax(280px, 380px) 1fr', 
+            gap: 'clamp(2rem, 4vw, 3rem)', 
+            alignItems: 'start'
+          }}
+          className="hero-grid">
             {/* Professional Profile Card */}
             <div style={{
-              background: 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '20px',
-              padding: '2.5rem',
+              background: 'linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 100%)',
+              border: '1px solid rgba(255,255,255,0.2)',
+              borderRadius: 'clamp(12px, 3vw, 20px)',
+              padding: 'clamp(1.5rem, 4vw, 2.5rem)',
               textAlign: 'center',
-              backdropFilter: 'blur(10px)'
+              backdropFilter: 'blur(20px)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
             }}>
               {/* Profile Image */}
               <div style={{
-                width: '180px',
-                height: '180px',
+                width: 'clamp(120px, 20vw, 180px)',
+                height: 'clamp(120px, 20vw, 180px)',
                 background: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
                 backgroundImage: 'url("/images/profile.jpeg")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 borderRadius: '50%',
-                margin: '0 auto 2rem',
-                border: '4px solid rgba(59, 130, 246, 0.4)',
-                boxShadow: '0 20px 40px rgba(59, 130, 246, 0.4)',
+                margin: '0 auto clamp(1rem, 3vw, 2rem)',
+                border: '3px solid rgba(59, 130, 246, 0.4)',
+                boxShadow: '0 15px 30px rgba(59, 130, 246, 0.3)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: '#ffffff',
-                fontSize: '3rem',
+                fontSize: 'clamp(2rem, 4vw, 3rem)',
                 fontWeight: '700',
                 position: 'relative'
               }}>
@@ -150,7 +153,7 @@ const Home = () => {
               </div>
               
               <h3 style={{
-                fontSize: '1.8rem',
+                fontSize: 'clamp(1.3rem, 3vw, 1.8rem)',
                 fontWeight: '700',
                 marginBottom: '0.5rem',
                 color: '#ffffff'
@@ -160,8 +163,9 @@ const Home = () => {
               
               <p style={{
                 color: 'rgba(255,255,255,0.6)',
-                fontSize: '1.2rem',
-                marginBottom: '2rem'
+                fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
+                marginBottom: 'clamp(1rem, 3vw, 2rem)',
+                lineHeight: '1.4'
               }}>
                 Power Systems Engineer & Software Developer
               </p>
@@ -170,39 +174,49 @@ const Home = () => {
               <div style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1rem',
-                fontSize: '1.1rem',
+                gap: 'clamp(0.75rem, 2vw, 1rem)',
+                fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
                 textAlign: 'center'
               }}>
                 <div style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'space-between', 
-                  padding: '0.75rem 0',
+                  padding: 'clamp(0.5rem, 1.5vw, 0.75rem) 0',
                   color: 'rgba(255,255,255,0.8)'
                 }}>
-                  <span style={{ color: '#3b82f6', fontWeight: '600', fontSize: '1.1rem' }}>Location</span>
-                  <span style={{ fontSize: '1.1rem' }}>Nigeria</span>
+                  <span style={{ color: '#3b82f6', fontWeight: '600', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)' }}>Location</span>
+                  <span style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)' }}>Nigeria</span>
                 </div>
                 <div style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'space-between', 
-                  padding: '0.75rem 0',
+                  padding: 'clamp(0.5rem, 1.5vw, 0.75rem) 0',
                   color: 'rgba(255,255,255,0.8)'
                 }}>
-                  <span style={{ color: '#3b82f6', fontWeight: '600', fontSize: '1.1rem' }}>Education</span>
-                  <span style={{ fontSize: '1.1rem' }}>MS Software Engineering</span>
+                  <span style={{ color: '#3b82f6', fontWeight: '600', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)' }}>Education</span>
+                  <span style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)' }}>BSc Electrical Engineering</span>
                 </div>
                 <div style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'space-between', 
-                  padding: '0.75rem 0',
+                  padding: 'clamp(0.5rem, 1.5vw, 0.75rem) 0',
                   color: 'rgba(255,255,255,0.8)'
                 }}>
-                  <span style={{ color: '#3b82f6', fontWeight: '600', fontSize: '1.1rem' }}>Current Role</span>
-                  <span style={{ fontSize: '1.1rem' }}>Power Systems</span>
+                  <span style={{ color: '#3b82f6', fontWeight: '600', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)' }}>Graduate Studies</span>
+                  <span style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)' }}>MS Software Engineering</span>
+                </div>
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'space-between', 
+                  padding: 'clamp(0.5rem, 1.5vw, 0.75rem) 0',
+                  color: 'rgba(255,255,255,0.8)'
+                }}>
+                  <span style={{ color: '#3b82f6', fontWeight: '600', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)' }}>Current Role</span>
+                  <span style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)' }}>Power Systems</span>
                 </div>
               </div>
             </div>
@@ -210,9 +224,9 @@ const Home = () => {
             {/* Main Professional Content */}
             <div>
               <h1 style={{ 
-                fontSize: 'clamp(3rem, 5vw, 4.5rem)', 
+                fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', 
                 fontWeight: '800', 
-                marginBottom: '1.5rem',
+                marginBottom: 'clamp(1rem, 2vw, 1.5rem)',
                 color: '#ffffff',
                 lineHeight: 1.1,
                 letterSpacing: '-0.02em'
@@ -229,38 +243,40 @@ const Home = () => {
               </h1>
               
               <p style={{ 
-                fontSize: '1.5rem', 
+                fontSize: 'clamp(1.1rem, 3vw, 1.5rem)', 
                 lineHeight: '1.6', 
-                marginBottom: '2.5rem',
+                marginBottom: 'clamp(1.5rem, 3vw, 2.5rem)',
                 color: 'rgba(255,255,255,0.8)',
                 maxWidth: '700px',
                 fontWeight: '400'
               }}>
                 A versatile professional bridging electrical engineering and software development. 
-                Currently advancing power grid reliability at Transmission Company of Nigeria while 
-                building next-generation blockchain and AI solutions.
+                Currently advancing power systems stability and safeguarding critical infrastructure 
+                while building next-generation blockchain and AI solutions for global markets.
               </p>
 
               {/* Quick Stats */}
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '1rem',
-                marginBottom: '3rem'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+                gap: 'clamp(0.75rem, 2vw, 1rem)',
+                marginBottom: 'clamp(2rem, 4vw, 3rem)'
               }}>
                 {[
                   { label: 'Experience', value: '6+ Years', emoji: '💼' },
-                  { label: 'Current Role', value: 'TCN Engineer', emoji: '⚡' },
-                  { label: 'Education', value: 'Masters', emoji: '🎓' },
+                  { label: 'Current Focus', value: 'Critical Infrastructure', emoji: '⚡' },
+                  { label: 'Education', value: 'BSc + Masters', emoji: '🎓' },
                   { label: 'Specialization', value: 'Blockchain & AI', emoji: '🚀' }
                 ].map((stat, index) => (
                   <div key={index} style={{
-                    padding: '1.5rem',
-                    background: 'rgba(255,255,255,0.02)',
-                    border: '1px solid rgba(255,255,255,0.06)',
+                    padding: 'clamp(1rem, 2.5vw, 1.5rem)',
+                    background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
+                    border: '1px solid rgba(255,255,255,0.15)',
                     borderRadius: '12px',
                     transition: 'all 0.3s ease',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    textAlign: 'center',
+                    backdropFilter: 'blur(10px)'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-4px)';
@@ -272,11 +288,11 @@ const Home = () => {
                     e.currentTarget.style.boxShadow = 'none';
                     e.currentTarget.style.border = '1px solid rgba(255,255,255,0.06)';
                   }}>
-                    <div style={{ fontSize: '2.2rem', marginBottom: '0.5rem' }}>{stat.emoji}</div>
-                    <div style={{ fontSize: '1.3rem', fontWeight: '700', color: '#3b82f6', marginBottom: '0.25rem' }}>
+                    <div style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', marginBottom: '0.5rem' }}>{stat.emoji}</div>
+                    <div style={{ fontSize: 'clamp(1rem, 2.5vw, 1.3rem)', fontWeight: '700', color: '#3b82f6', marginBottom: '0.25rem' }}>
                       {stat.value}
                     </div>
-                    <div style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.7)' }}>
+                    <div style={{ fontSize: 'clamp(0.8rem, 2vw, 1rem)', color: 'rgba(255,255,255,0.7)' }}>
                       {stat.label}
                     </div>
                   </div>
@@ -284,18 +300,26 @@ const Home = () => {
               </div>
 
               {/* Professional Call-to-Action */}
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <div style={{ 
+                display: 'flex', 
+                gap: 'clamp(0.75rem, 2vw, 1rem)', 
+                flexWrap: 'wrap',
+                justifyContent: 'center'
+              }}
+              className="cta-buttons">
                 <a 
                   href="#projects" 
                   style={{ 
-                    padding: '1rem 2rem', 
+                    padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)', 
                     background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
                     color: '#ffffff', 
                     textDecoration: 'none',
                     borderRadius: '8px',
                     fontWeight: '600',
                     transition: 'all 0.2s ease',
-                    fontSize: '1rem'
+                    fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                    textAlign: 'center',
+                    minWidth: '120px'
                   }}
                 >
                   View Projects
@@ -303,14 +327,16 @@ const Home = () => {
                 <a 
                   href="mailto:fumsamuel@gmail.com" 
                   style={{ 
-                    padding: '1rem 2rem', 
+                    padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)', 
                     border: '1px solid rgba(255,255,255,0.2)', 
                     color: 'rgba(255,255,255,0.9)', 
                     textDecoration: 'none',
                     borderRadius: '8px',
                     fontWeight: '600',
                     transition: 'all 0.2s ease',
-                    fontSize: '1rem'
+                    fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                    textAlign: 'center',
+                    minWidth: '120px'
                   }}
                 >
                   Get in Touch
@@ -322,26 +348,27 @@ const Home = () => {
 
         {/* Skills Section */}
         <section id="skills" style={{ 
-          padding: '8rem 2rem',
-          background: 'rgba(255,255,255,0.01)',
+          padding: 'clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem)',
+          background: 'linear-gradient(180deg, rgba(10,14,26,0.8) 0%, rgba(15,20,35,0.9) 100%)',
           maxWidth: '1200px',
           margin: '0 auto',
-          marginBottom: '4rem',
-          borderRadius: '24px'
+          marginBottom: 'clamp(2rem, 4vw, 4rem)',
+          borderRadius: '24px',
+          border: '1px solid rgba(255,255,255,0.1)'
         }}>
           <h2 style={{ 
-            fontSize: '2.5rem', 
+            fontSize: 'clamp(2rem, 5vw, 2.5rem)', 
             fontWeight: '700', 
             textAlign: 'center', 
-            marginBottom: '4rem',
+            marginBottom: 'clamp(2rem, 6vw, 4rem)',
             color: '#3B82F6'
           }}>
             Technology Expertise
           </h2>
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-            gap: '2rem' 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+            gap: 'clamp(1rem, 3vw, 2rem)' 
           }}>
             {[
               {
@@ -386,13 +413,14 @@ const Home = () => {
               }
             ].map((skill, index) => (
               <div key={index} style={{ 
-                padding: '2rem', 
-                background: 'rgba(255,255,255,0.05)',
+                padding: 'clamp(1.5rem, 3vw, 2rem)', 
+                background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
                 borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.1)',
-                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255,255,255,0.15)',
+                backdropFilter: 'blur(15px)',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-6px)';
@@ -404,18 +432,18 @@ const Home = () => {
                 e.currentTarget.style.boxShadow = 'none';
                 e.currentTarget.style.border = '1px solid rgba(255,255,255,0.1)';
               }}>
-                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{skill.icon}</div>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '1rem', color: 'white' }}>
+                <div style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '1rem' }}>{skill.icon}</div>
+                <h3 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', fontWeight: '600', marginBottom: '1rem', color: 'white' }}>
                   {skill.title}
                 </h3>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                   {skill.skills.map((tech, techIndex) => (
                     <span key={techIndex} style={{ 
-                      padding: '0.5rem 1rem',
+                      padding: 'clamp(0.4rem, 1vw, 0.5rem) clamp(0.75rem, 2vw, 1rem)',
                       background: 'rgba(59, 130, 246, 0.2)',
                       color: '#3B82F6',
                       borderRadius: '20px',
-                      fontSize: '0.9rem',
+                      fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
                       fontWeight: '500'
                     }}>
                       {tech}
@@ -429,15 +457,17 @@ const Home = () => {
 
         {/* Timeline Section - Compact Professional Design */}
         <section id="timeline" style={{ 
-          padding: '8rem 2rem',
-          background: 'rgba(255,255,255,0.005)',
+          padding: 'clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem)',
+          background: 'linear-gradient(180deg, rgba(15,20,35,0.9) 0%, rgba(10,14,26,0.8) 100%)',
           maxWidth: '1400px',
           margin: '0 auto',
-          marginBottom: '4rem'
+          marginBottom: 'clamp(2rem, 4vw, 4rem)',
+          borderRadius: '24px',
+          border: '1px solid rgba(255,255,255,0.1)'
         }}>
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 6vw, 4rem)' }}>
             <h2 style={{ 
-              fontSize: '3.5rem', 
+              fontSize: 'clamp(2.5rem, 6vw, 3.5rem)', 
               fontWeight: '800', 
               marginBottom: '1rem',
               color: '#ffffff',
@@ -446,7 +476,7 @@ const Home = () => {
               Professional Journey
             </h2>
             <p style={{ 
-              fontSize: '1.5rem', 
+              fontSize: 'clamp(1.1rem, 3vw, 1.5rem)', 
               color: 'rgba(255,255,255,0.6)',
               maxWidth: '600px',
               margin: '0 auto'
@@ -520,16 +550,18 @@ const Home = () => {
             ].map((item, index) => (
               <div key={index} style={{
                 display: 'grid',
-                gridTemplateColumns: '200px 1fr',
-                gap: '2rem',
-                marginBottom: '2rem',
-                padding: '2rem',
-                background: 'rgba(255,255,255,0.02)',
-                border: '1px solid rgba(255,255,255,0.06)',
-                borderRadius: '12px',
+                gridTemplateColumns: '1fr',
+                gap: 'clamp(1rem, 3vw, 2rem)',
+                marginBottom: 'clamp(1.5rem, 3vw, 2rem)',
+                padding: 'clamp(1.5rem, 3vw, 2rem)',
+                background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
+                border: '1px solid rgba(255,255,255,0.15)',
+                borderRadius: '16px',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                backdropFilter: 'blur(10px)'
               }}
+              className="timeline-item"
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
                 e.currentTarget.style.boxShadow = '0 20px 40px rgba(59, 130, 246, 0.2)';
@@ -542,13 +574,15 @@ const Home = () => {
               }}>
                 {/* Year Column */}
                 <div style={{
-                  textAlign: 'right',
-                  paddingRight: '2rem',
-                  borderRight: '2px solid rgba(59, 130, 246, 0.3)'
-                }}>
-                  <div style={{ fontSize: '2.2rem', marginBottom: '0.5rem' }}>{item.emoji}</div>
+                  textAlign: 'center',
+                  paddingBottom: '1rem',
+                  marginBottom: '1rem',
+                  borderBottom: '2px solid rgba(59, 130, 246, 0.3)'
+                }}
+                className="timeline-year">
+                  <div style={{ fontSize: 'clamp(1.8rem, 4vw, 2.2rem)', marginBottom: '0.5rem' }}>{item.emoji}</div>
                   <div style={{ 
-                    fontSize: '1.2rem', 
+                    fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', 
                     fontWeight: '600',
                     color: '#3b82f6',
                     fontFamily: 'JetBrains Mono, monospace'
@@ -556,7 +590,7 @@ const Home = () => {
                     {item.year}
                   </div>
                   <div style={{ 
-                    fontSize: '1.1rem', 
+                    fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', 
                     color: 'rgba(255,255,255,0.6)',
                     marginTop: '0.25rem'
                   }}>
@@ -566,10 +600,10 @@ const Home = () => {
 
                 {/* Content Column */}
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
                     <div>
                       <h3 style={{ 
-                        fontSize: '1.6rem', 
+                        fontSize: 'clamp(1.3rem, 3vw, 1.6rem)', 
                         fontWeight: '700', 
                         color: '#ffffff',
                         marginBottom: '0.25rem'
@@ -577,7 +611,7 @@ const Home = () => {
                         {item.title}
                       </h3>
                       <div style={{ 
-                        fontSize: '1.3rem', 
+                        fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)', 
                         color: 'rgba(255,255,255,0.8)',
                         marginBottom: '0.75rem'
                       }}>
@@ -585,12 +619,14 @@ const Home = () => {
                       </div>
                     </div>
                     <div style={{
-                      padding: '0.5rem 1rem',
+                      padding: 'clamp(0.4rem, 1vw, 0.5rem) clamp(0.75rem, 2vw, 1rem)',
                       background: 'rgba(6, 182, 212, 0.1)',
                       color: '#06b6d4',
                       borderRadius: '12px',
-                      fontSize: '1rem',
-                      fontWeight: '500'
+                      fontSize: 'clamp(0.8rem, 2vw, 1rem)',
+                      fontWeight: '500',
+                      textAlign: 'center',
+                      minWidth: 'fit-content'
                     }}>
                       {item.achievements}
                     </div>
@@ -600,7 +636,7 @@ const Home = () => {
                     color: 'rgba(255,255,255,0.7)', 
                     marginBottom: '1rem',
                     lineHeight: '1.5',
-                    fontSize: '1.1rem'
+                    fontSize: 'clamp(1rem, 2.2vw, 1.1rem)'
                   }}>
                     {item.description}
                   </p>
@@ -608,11 +644,11 @@ const Home = () => {
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     {item.tech.map((tech, techIndex) => (
                       <span key={techIndex} style={{ 
-                        padding: '0.4rem 1rem',
+                        padding: 'clamp(0.3rem, 1vw, 0.4rem) clamp(0.75rem, 2vw, 1rem)',
                         background: 'rgba(59, 130, 246, 0.1)',
                         color: '#3b82f6',
                         borderRadius: '8px',
-                        fontSize: '1rem',
+                        fontSize: 'clamp(0.8rem, 2vw, 1rem)',
                         fontWeight: '500'
                       }}>
                         {tech}
@@ -627,15 +663,17 @@ const Home = () => {
 
         {/* Projects Section - Professional Grid */}
         <section id="projects" style={{ 
-          padding: '8rem 2rem',
-          background: 'rgba(255,255,255,0.01)',
+          padding: 'clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem)',
+          background: 'linear-gradient(180deg, rgba(10,14,26,0.8) 0%, rgba(15,20,35,0.9) 100%)',
           maxWidth: '1400px',
           margin: '0 auto',
-          marginBottom: '4rem'
+          marginBottom: 'clamp(2rem, 4vw, 4rem)',
+          borderRadius: '24px',
+          border: '1px solid rgba(255,255,255,0.1)'
         }}>
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 6vw, 4rem)' }}>
             <h2 style={{ 
-              fontSize: '2.5rem', 
+              fontSize: 'clamp(2rem, 5vw, 2.5rem)', 
               fontWeight: '800', 
               marginBottom: '1rem',
               color: '#ffffff',
@@ -644,7 +682,7 @@ const Home = () => {
               Featured Projects
             </h2>
             <p style={{ 
-              fontSize: '1.1rem', 
+              fontSize: 'clamp(1rem, 2.5vw, 1.1rem)', 
               color: 'rgba(255,255,255,0.6)',
               maxWidth: '600px',
               margin: '0 auto'
@@ -655,8 +693,8 @@ const Home = () => {
 
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', 
-            gap: '2rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+            gap: 'clamp(1.5rem, 3vw, 2rem)',
             maxWidth: '1200px',
             margin: '0 auto'
           }}>
@@ -673,7 +711,7 @@ const Home = () => {
               {
                 title: 'SCADA Grid Monitoring',
                 category: 'Power Systems',
-                description: 'Real-time power grid monitoring system with predictive maintenance capabilities for TCN operations.',
+                description: 'Real-time power grid monitoring system with predictive maintenance capabilities for critical infrastructure operations.',
                 tech: ['SCADA', 'SQL', 'Predictive Analytics'],
                 metrics: '30% reliability improvement',
                 status: 'Enterprise',
@@ -717,12 +755,14 @@ const Home = () => {
               }
             ].map((project, index) => (
               <div key={index} style={{
-                background: 'rgba(255,255,255,0.02)',
-                border: '1px solid rgba(255,255,255,0.06)',
+                background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
+                border: '1px solid rgba(255,255,255,0.15)',
                 borderRadius: '16px',
                 overflow: 'hidden',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
@@ -736,7 +776,7 @@ const Home = () => {
               }}>
                 {/* Project Image */}
                 <div style={{
-                  height: '200px',
+                  height: 'clamp(150px, 25vw, 200px)',
                   background: `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(6, 182, 212, 0.1)), url(${project.image})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
@@ -746,7 +786,7 @@ const Home = () => {
                     position: 'absolute',
                     top: '1rem',
                     right: '1rem',
-                    padding: '0.5rem 1rem',
+                    padding: 'clamp(0.4rem, 1vw, 0.5rem) clamp(0.75rem, 2vw, 1rem)',
                     background: project.status === 'Live' ? 'rgba(34, 197, 94, 0.2)' : 
                                project.status === 'Production' ? 'rgba(59, 130, 246, 0.2)' :
                                project.status === 'Enterprise' ? 'rgba(147, 51, 234, 0.2)' : 'rgba(249, 115, 22, 0.2)',
@@ -754,7 +794,7 @@ const Home = () => {
                            project.status === 'Production' ? '#3b82f6' :
                            project.status === 'Enterprise' ? '#9333ea' : '#f97316',
                     borderRadius: '12px',
-                    fontSize: '0.95rem',
+                    fontSize: 'clamp(0.8rem, 2vw, 0.95rem)',
                     fontWeight: '600',
                     backdropFilter: 'blur(10px)'
                   }}>
@@ -763,10 +803,10 @@ const Home = () => {
                 </div>
 
                 {/* Project Content */}
-                <div style={{ padding: '2rem' }}>
+                <div style={{ padding: 'clamp(1.5rem, 3vw, 2rem)' }}>
                   <div style={{ marginBottom: '1rem' }}>
                     <div style={{ 
-                      fontSize: '0.85rem', 
+                      fontSize: 'clamp(0.75rem, 2vw, 0.85rem)', 
                       color: '#06b6d4',
                       fontWeight: '600',
                       marginBottom: '0.5rem',
@@ -776,10 +816,11 @@ const Home = () => {
                       {project.category}
                     </div>
                     <h3 style={{ 
-                      fontSize: '1.5rem', 
+                      fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', 
                       fontWeight: '700', 
                       color: '#ffffff',
-                      marginBottom: '0.75rem'
+                      marginBottom: '0.75rem',
+                      lineHeight: '1.3'
                     }}>
                       {project.title}
                     </h3>
@@ -788,21 +829,22 @@ const Home = () => {
                   <p style={{ 
                     color: 'rgba(255,255,255,0.7)', 
                     lineHeight: '1.6',
-                    marginBottom: '1.5rem'
+                    marginBottom: '1.5rem',
+                    fontSize: 'clamp(0.9rem, 2.2vw, 1rem)'
                   }}>
                     {project.description}
                   </p>
 
                   {/* Metrics */}
                   <div style={{
-                    padding: '0.75rem 1rem',
+                    padding: 'clamp(0.6rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1rem)',
                     background: 'rgba(6, 182, 212, 0.1)',
                     borderRadius: '8px',
                     marginBottom: '1.5rem',
                     textAlign: 'center'
                   }}>
                     <div style={{ 
-                      fontSize: '0.9rem', 
+                      fontSize: 'clamp(0.8rem, 2vw, 0.9rem)', 
                       color: '#06b6d4',
                       fontWeight: '600'
                     }}>
@@ -814,11 +856,11 @@ const Home = () => {
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     {project.tech.map((tech, techIndex) => (
                       <span key={techIndex} style={{ 
-                        padding: '0.25rem 0.75rem',
+                        padding: 'clamp(0.2rem, 0.8vw, 0.25rem) clamp(0.6rem, 1.5vw, 0.75rem)',
                         background: 'rgba(59, 130, 246, 0.1)',
                         color: '#3b82f6',
                         borderRadius: '8px',
-                        fontSize: '0.95rem',
+                        fontSize: 'clamp(0.8rem, 2vw, 0.95rem)',
                         fontWeight: '500'
                       }}>
                         {tech}
@@ -833,15 +875,17 @@ const Home = () => {
 
         {/* Technologies Section - Professional Stack Display */}
         <section id="technologies" style={{ 
-          padding: '8rem 2rem',
-          background: 'rgba(255,255,255,0.005)',
+          padding: 'clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem)',
+          background: 'linear-gradient(180deg, rgba(15,20,35,0.9) 0%, rgba(10,14,26,0.8) 100%)',
           maxWidth: '1400px',
           margin: '0 auto',
-          marginBottom: '4rem'
+          marginBottom: 'clamp(2rem, 4vw, 4rem)',
+          borderRadius: '24px',
+          border: '1px solid rgba(255,255,255,0.1)'
         }}>
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 6vw, 4rem)' }}>
             <h2 style={{ 
-              fontSize: '3.5rem', 
+              fontSize: 'clamp(2.5rem, 6vw, 3.5rem)', 
               fontWeight: '800', 
               marginBottom: '1rem',
               color: '#ffffff',
@@ -850,7 +894,7 @@ const Home = () => {
               Technology Stack
             </h2>
             <p style={{ 
-              fontSize: '1.5rem', 
+              fontSize: 'clamp(1.1rem, 3vw, 1.5rem)', 
               color: 'rgba(255,255,255,0.6)',
               maxWidth: '600px',
               margin: '0 auto'
@@ -861,8 +905,8 @@ const Home = () => {
 
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-            gap: '2rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+            gap: 'clamp(1.5rem, 3vw, 2rem)',
             maxWidth: '1200px',
             margin: '0 auto'
           }}>
@@ -941,12 +985,14 @@ const Home = () => {
               }
             ].map((tech, index) => (
               <div key={index} style={{
-                background: 'rgba(255,255,255,0.02)',
-                border: '1px solid rgba(255,255,255,0.06)',
+                background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
+                border: '1px solid rgba(255,255,255,0.15)',
                 borderRadius: '16px',
-                padding: '2rem',
+                padding: 'clamp(1.5rem, 3vw, 2rem)',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                backdropFilter: 'blur(15px)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-6px)';
@@ -962,53 +1008,58 @@ const Home = () => {
                 <div style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
-                  marginBottom: '2rem',
-                  padding: '1rem',
+                  marginBottom: 'clamp(1.5rem, 3vw, 2rem)',
+                  padding: 'clamp(0.75rem, 2vw, 1rem)',
                   background: tech.bgColor,
-                  borderRadius: '12px'
+                  borderRadius: '12px',
+                  flexWrap: 'wrap',
+                  gap: '0.75rem'
                 }}>
                   <div style={{ 
-                    width: '48px',
-                    height: '48px',
+                    width: 'clamp(40px, 8vw, 48px)',
+                    height: 'clamp(40px, 8vw, 48px)',
                     background: tech.color,
                     borderRadius: '8px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '1.5rem',
-                    marginRight: '1rem'
+                    fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
+                    flexShrink: 0
                   }}>
                     {tech.emoji}
                   </div>
                   <h3 style={{ 
-                    fontSize: '1.6rem', 
+                    fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', 
                     fontWeight: '700', 
                     color: tech.color,
-                    margin: 0
+                    margin: 0,
+                    lineHeight: '1.2'
                   }}>
                     {tech.category}
                   </h3>
                 </div>
 
                 {/* Skills with Progress Bars */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(1rem, 2.5vw, 1.25rem)' }}>
                   {tech.skills.map((skill, skillIndex) => (
                     <div key={skillIndex}>
                       <div style={{ 
                         display: 'flex', 
                         justifyContent: 'space-between', 
                         alignItems: 'center',
-                        marginBottom: '0.5rem'
+                        marginBottom: '0.5rem',
+                        flexWrap: 'wrap',
+                        gap: '0.5rem'
                       }}>
                         <span style={{ 
-                          fontSize: '1.1rem', 
+                          fontSize: 'clamp(1rem, 2.5vw, 1.1rem)', 
                           fontWeight: '600',
                           color: '#ffffff'
                         }}>
                           {skill.name}
                         </span>
                         <span style={{ 
-                          fontSize: '1rem', 
+                          fontSize: 'clamp(0.9rem, 2vw, 1rem)', 
                           color: tech.color,
                           fontWeight: '600',
                           fontFamily: 'JetBrains Mono, monospace'
@@ -1018,7 +1069,7 @@ const Home = () => {
                       </div>
                       <div style={{
                         width: '100%',
-                        height: '6px',
+                        height: 'clamp(4px, 1vw, 6px)',
                         background: 'rgba(255,255,255,0.1)',
                         borderRadius: '3px',
                         overflow: 'hidden'
@@ -1041,26 +1092,27 @@ const Home = () => {
 
         {/* Certifications & Achievements Section */}
         <section id="achievements" style={{ 
-          padding: '8rem 2rem',
-          background: 'rgba(255,255,255,0.01)',
+          padding: 'clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem)',
+          background: 'linear-gradient(180deg, rgba(10,14,26,0.8) 0%, rgba(15,20,35,0.9) 100%)',
           maxWidth: '1200px',
           margin: '0 auto',
-          marginBottom: '4rem',
-          borderRadius: '24px'
+          marginBottom: 'clamp(2rem, 4vw, 4rem)',
+          borderRadius: '24px',
+          border: '1px solid rgba(255,255,255,0.1)'
         }}>
           <h2 style={{ 
-            fontSize: '2.5rem', 
+            fontSize: 'clamp(2rem, 5vw, 2.5rem)', 
             fontWeight: '700', 
             textAlign: 'center', 
-            marginBottom: '4rem',
+            marginBottom: 'clamp(2rem, 6vw, 4rem)',
             color: '#3B82F6'
           }}>
             Certifications & Achievements
           </h2>
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-            gap: '2rem' 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+            gap: 'clamp(1.5rem, 3vw, 2rem)' 
           }}>
             {[
               {
@@ -1095,19 +1147,21 @@ const Home = () => {
               }
             ].map((achievement, index) => (
               <div key={index} style={{ 
-                padding: '2rem', 
-                background: 'rgba(255,255,255,0.05)',
+                padding: 'clamp(1.5rem, 3vw, 2rem)', 
+                background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
                 borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.1)',
-                backdropFilter: 'blur(10px)',
-                textAlign: 'center'
+                border: '1px solid rgba(255,255,255,0.15)',
+                backdropFilter: 'blur(15px)',
+                textAlign: 'center',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
               }}>
-                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{achievement.icon}</div>
+                <div style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '1rem' }}>{achievement.icon}</div>
                 <h3 style={{ 
-                  fontSize: '1.25rem', 
+                  fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)', 
                   fontWeight: '600', 
                   marginBottom: '1.5rem',
-                  color: 'white'
+                  color: 'white',
+                  lineHeight: '1.3'
                 }}>
                   {achievement.category}
                 </h3>
@@ -1119,10 +1173,12 @@ const Home = () => {
                   {achievement.items.map((item, itemIndex) => (
                     <li key={itemIndex} style={{ 
                       marginBottom: '0.75rem',
-                      padding: '0.5rem',
+                      padding: 'clamp(0.4rem, 1vw, 0.5rem)',
                       background: 'rgba(59, 130, 246, 0.1)',
                       borderRadius: '8px',
-                      borderLeft: '3px solid #3B82F6'
+                      borderLeft: '3px solid #3B82F6',
+                      fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                      textAlign: 'left'
                     }}>
                       {item}
                     </li>
@@ -1135,14 +1191,14 @@ const Home = () => {
 
         {/* Contact Section */}
         <section id="contact" style={{ 
-          padding: '8rem 2rem',
+          padding: 'clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem)',
           textAlign: 'center',
           maxWidth: '1200px',
           margin: '0 auto',
           marginBottom: '2rem'
         }}>
           <h2 style={{ 
-            fontSize: '2.5rem', 
+            fontSize: 'clamp(2rem, 5vw, 2.5rem)', 
             fontWeight: '700', 
             marginBottom: '2rem',
             color: '#3B82F6'
@@ -1150,11 +1206,12 @@ const Home = () => {
             Let's Connect
           </h2>
           <p style={{ 
-            fontSize: '1.25rem', 
+            fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)', 
             color: 'rgba(255,255,255,0.8)', 
             marginBottom: '3rem',
             maxWidth: '600px',
-            margin: '0 auto 3rem'
+            margin: '0 auto 3rem',
+            lineHeight: '1.6'
           }}>
             Ready to collaborate on innovative projects or discuss technology solutions? 
             Let's explore opportunities together.
@@ -1162,13 +1219,14 @@ const Home = () => {
           <div style={{ 
             display: 'flex', 
             justifyContent: 'center', 
-            gap: '2rem',
+            gap: 'clamp(1rem, 3vw, 2rem)',
             flexWrap: 'wrap'
-          }}>
+          }}
+          className="contact-buttons">
             <a 
               href="mailto:fumsamuel@gmail.com" 
               style={{ 
-                padding: '1rem 2rem', 
+                padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)', 
                 backgroundColor: '#3B82F6', 
                 color: 'white', 
                 textDecoration: 'none',
@@ -1177,7 +1235,9 @@ const Home = () => {
                 transition: 'all 0.3s ease',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem'
+                gap: '0.5rem',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                minWidth: 'fit-content'
               }}
             >
               Email Me
@@ -1187,7 +1247,7 @@ const Home = () => {
               target="_blank" 
               rel="noopener noreferrer"
               style={{ 
-                padding: '1rem 2rem', 
+                padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)', 
                 border: '1px solid rgba(255,255,255,0.2)', 
                 color: 'rgba(255,255,255,0.9)', 
                 textDecoration: 'none',
@@ -1196,7 +1256,9 @@ const Home = () => {
                 transition: 'all 0.3s ease',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem'
+                gap: '0.5rem',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                minWidth: 'fit-content'
               }}
             >
               LinkedIn
@@ -1206,7 +1268,7 @@ const Home = () => {
               target="_blank" 
               rel="noopener noreferrer"
               style={{ 
-                padding: '1rem 2rem', 
+                padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)', 
                 border: '1px solid rgba(255,255,255,0.2)', 
                 color: 'rgba(255,255,255,0.9)', 
                 textDecoration: 'none',
@@ -1215,7 +1277,9 @@ const Home = () => {
                 transition: 'all 0.3s ease',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem'
+                gap: '0.5rem',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                minWidth: 'fit-content'
               }}
             >
               GitHub
@@ -1250,6 +1314,82 @@ const Home = () => {
           font-family: 'Inter', sans-serif;
           overflow-x: hidden;
         }
+
+        /* Mobile-specific navigation adjustments */
+        @media (max-width: 768px) {
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            text-align: center;
+          }
+          
+          .cta-buttons {
+            justify-content: center !important;
+          }
+          
+          .stat-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          
+          /* Mobile navigation */
+          nav div:last-child {
+            gap: clamp(0.75rem, 2vw, 1.5rem) !important;
+          }
+          
+          /* Timeline mobile layout - single column */
+          .timeline-item {
+            grid-template-columns: 1fr !important;
+            text-align: center !important;
+          }
+          
+          .timeline-year {
+            border-right: none !important;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3) !important;
+            padding-bottom: 1rem !important;
+            margin-bottom: 1rem !important;
+            text-align: center !important;
+            padding-right: 0 !important;
+          }
+          
+          /* Better spacing on mobile */
+          section {
+            padding-left: clamp(1rem, 4vw, 2rem) !important;
+            padding-right: clamp(1rem, 4vw, 2rem) !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          /* Extra small mobile adjustments */
+          .stat-grid {
+            grid-template-columns: 1fr !important;
+          }
+          
+          /* Reduce spacing on very small screens */
+          section {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+          }
+          
+          /* Stack contact buttons vertically on small screens */
+          .contact-buttons {
+            flex-direction: column !important;
+            align-items: center !important;
+          }
+          
+          .contact-buttons a {
+            width: 100% !important;
+            max-width: 250px !important;
+            text-align: center !important;
+          }
+          
+          /* Better card spacing on mobile */
+          .timeline-item, 
+          .skill-card, 
+          .project-card,
+          .tech-card,
+          .achievement-card {
+            margin-bottom: 1rem !important;
+          }
+        }
         
         /* Enhanced hover animations */
         a:hover {
@@ -1282,6 +1422,41 @@ const Home = () => {
         .gradient-bg {
           will-change: transform;
           transform: translateZ(0);
+        }
+
+        /* Responsive text scaling */
+        @media (max-width: 1200px) {
+          html {
+            font-size: 16px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          html {
+            font-size: 15px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          html {
+            font-size: 14px;
+          }
+        }
+
+        /* Improved touch targets for mobile */
+        @media (max-width: 768px) {
+          a, button {
+            min-height: 44px;
+            min-width: 44px;
+          }
+        }
+
+        /* Landscape mobile optimizations */
+        @media (max-width: 768px) and (orientation: landscape) {
+          section {
+            padding-top: clamp(2rem, 4vw, 4rem) !important;
+            padding-bottom: clamp(2rem, 4vw, 4rem) !important;
+          }
         }
       `}</style>
     </>
