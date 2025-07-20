@@ -1,105 +1,53 @@
 import React from 'react';
-import { DiFirebase, DiReact, DiZend, } from 'react-icons/di';
-import { SiIbm, SiAdobe, SiGoogleanalytics } from 'react-icons/si';
-import { AiFillGoogleCircle } from 'react-icons/ai';
 import { Section, SectionDivider, SectionText, SectionTitle } from '../../styles/GlobalComponents';
 import { List, ListContainer, ListItem, ListParagraph, ListTitle } from './TechnologiesStyles';
 
-const Technologies = () =>  (
+const Technologies = () => (
   <Section id="tech">
     <SectionDivider divider />
-    <SectionTitle>Technologies</SectionTitle>
+    <SectionTitle>Technology Expertise</SectionTitle>
     <SectionText>
-      I've worked with a range a technologies in the web development world.
-      From Back-end To Design, Blockchain implimentation, Artificial Intelligence and Data analysis.
+      Comprehensive experience across modern technology stacks - from cloud infrastructure and DevOps 
+      to AI/ML implementation, full-stack development, and blockchain solutions.
     </SectionText>
     <List>
       <ListItem>
         <picture>
-          <DiReact size="3rem" />
+          <div style={{ fontSize: '3rem' }}>⚛️</div>
         </picture>
         <ListContainer>
-          <ListTitle>Front-End</ListTitle>
+          <ListTitle>Full-Stack Development</ListTitle>
           <ListParagraph>
-            Experiece with <br />
-            React.js
+            Advanced expertise in <br />
+            Next.js, React, TypeScript, Node.js
           </ListParagraph>
         </ListContainer>
       </ListItem>
       <ListItem>
         <picture>
-          <DiFirebase size="3rem" />
+          <div style={{ fontSize: '3rem' }}>☁️</div>
         </picture>
         <ListContainer>
-          <ListTitle>Back-End</ListTitle>
+          <ListTitle>Cloud Infrastructure</ListTitle>
           <ListParagraph>
-            Experience with <br />
-            Node and Databases
+            Certified in <br />
+            AWS, Azure, Docker, Kubernetes
           </ListParagraph>
         </ListContainer>
       </ListItem>
       <ListItem>
         <picture>
-          <DiZend size="3rem" />
+          <div style={{ fontSize: '3rem' }}>💻</div>
         </picture>
         <ListContainer>
-          <ListTitle>Blockchain</ListTitle>
+          <ListTitle>Frontend Technologies</ListTitle>
           <ListParagraph>
             Experience with <br />
-            solidity 
-          </ListParagraph>
-        </ListContainer>
-      </ListItem>
-      <ListItem>
-        <picture>
-          <SiIbm size="3rem" />
-        </picture>
-        <ListContainer>
-          <ListTitle>IBM A.I</ListTitle>
-          <ListParagraph>
-            Experience with <br />
-            IBM Artificial Intelligence  
-          </ListParagraph>
-        </ListContainer>
-      </ListItem>
-      <ListItem>
-        <picture>
-          <SiAdobe size="3rem" />
-        </picture>
-        <ListContainer>
-          <ListTitle>Adobe </ListTitle>
-          <ListParagraph>
-            Experience with <br />
-            Premeir Pro, After-Effects  
-          </ListParagraph>
-        </ListContainer>
-      </ListItem>
-      <ListItem>
-        <picture>
-          <SiGoogleanalytics size="3rem" />
-        </picture>
-        <ListContainer>
-          <ListTitle>Data analysis </ListTitle>
-          <ListParagraph>
-            Experience with <br />
-            Data analysis and classification  
-          </ListParagraph>
-        </ListContainer>
-      </ListItem>
-      <ListItem>
-        <picture>
-          <AiFillGoogleCircle size="3rem" />
-        </picture>
-        <ListContainer>
-          <ListTitle>Digital Marketing  </ListTitle>
-          <ListParagraph>
-            Experience with <br />
-            Google digital skills for marketing   
+            React, Vue.js, Angular, HTML5, CSS3
           </ListParagraph>
         </ListContainer>
       </ListItem>
     </List>
-    <SectionDivider colorAlt />
   </Section>
 );
 

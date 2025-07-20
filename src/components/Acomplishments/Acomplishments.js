@@ -4,16 +4,19 @@ import { Section, SectionDivider, SectionTitle } from '../../styles/GlobalCompon
 import { Box, Boxes, BoxNum, BoxText } from './AcomplishmentsStyles';
 
 const data = [
-  { number: "Analytics", text: 'Linkedin Learning '},
-  { number:"STCW", text: 'Joemarine Institute ', },
-  { number: "Member", text: 'Nigerian Society of Engineers ', },
-  { number: "CyberSecurity", text: 'CISCO Networking Academy ', },
-  { number: "Mickensy Academy ", text: 'MickensyForward Badge ', }
+  { number: "AWS", text: 'Certified Solutions Architect Professional' },
+  { number: "Azure", text: 'Certified DevOps Engineer Expert' },
+  { number: "CISSP", text: 'Certified Information Systems Security Professional' },
+  { number: "Kubernetes", text: 'Certified Kubernetes Administrator (CKA)' },
+  { number: "Terraform", text: 'Certified Associate - Infrastructure Automation' },
+  { number: "IBM", text: 'AI Professional Certificate & Cloud Computing' },
+  { number: "NSE", text: 'Nigerian Society of Engineers (MNSE)' },
+  { number: "Leadership", text: 'McKinsey Forward Program Graduate' }
 ];
 
 const Acomplishments = () => (
   <Section>
-    <SectionTitle>Personal Achievements</SectionTitle>
+    <SectionTitle>Professional Certifications & Achievements</SectionTitle>
     <Boxes>
       {data.map((card, index) => (
         <Box key={index}>

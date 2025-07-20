@@ -1,48 +1,64 @@
 import Link from 'next/link';
 import React from 'react';
-import { AiFillGithub, AiFillInstagram, AiFillLinkedin } from 'react-icons/ai';
-import { DiCssdeck } from 'react-icons/di';
 
 import { Container, Div1, Div2, Div3, NavLink, SocialIcons } from './HeaderStyles';
 
-const Header = () =>  (
-  <Container>
-    <Div1>
-      <Link href="/">
-        <a style={{ display: 'flex', alignItems: 'center', color:"white" }}>
-          <DiCssdeck size="3rem" /> <span>Eze Kenneth</span>
-        </a>
-      </Link>
-    </Div1>
-    <Div2>
-      <li>
-        <Link href="#projects">
-          <NavLink>Projects</NavLink>
+const Header = () => {
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
+  return (
+    <Container>
+      <Div1>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', color:"white", textDecoration: 'none' }}>
+          <span style={{ fontSize: '3rem', marginRight: '0.5rem' }}>👨‍💻</span> <span>Kenneth Ezenwanne</span>
         </Link>
-      </li>
-      <li>
-        <Link href="#tech">
-          <NavLink>Technologies</NavLink>
-        </Link>
-      </li>        
-      <li>
-        <Link href="#about">
-          <NavLink>About</NavLink>
-        </Link>
-      </li>        
-    </Div2>
+      </Div1>
+      <Div2>
+        <li>
+          <NavLink onClick={() => scrollToSection('projects')}>
+            Projects
+          </NavLink>
+        </li>
+        <li>
+          <NavLink onClick={() => scrollToSection('tech')}>
+            Technologies
+          </NavLink>
+        </li>        
+        <li>
+          <NavLink onClick={() => scrollToSection('about')}>
+            Timeline
+          </NavLink>
+        </li>
+        <li>
+          <NavLink onClick={() => scrollToSection('contact')}>
+            Contact
+          </NavLink>
+        </li>        
+      </Div2>
       <Div3>
-        <SocialIcons href="https://github.com/surelinks">
-          <AiFillGithub size="3rem" />
+        <SocialIcons href="https://github.com/kennethez" target="_blank" rel="noopener noreferrer">
+          <span style={{ fontSize: '3rem' }}>🐙</span>
         </SocialIcons>
-        <SocialIcons href="https://linkedin.com/in/kenneth-ezenwanne-1a74a66b">
-          <AiFillLinkedin size="3rem" />
+        <SocialIcons href="https://linkedin.com/in/kenneth-ezenwanne" target="_blank" rel="noopener noreferrer">
+          <span style={{ fontSize: '3rem' }}>💼</span>
         </SocialIcons>
-        <SocialIcons href="https://instagram.com/surelinks">
-          <AiFillInstagram size="3rem"/>
+        <SocialIcons href="mailto:kenneth.ezenwanne@gmail.com">
+          <span style={{ fontSize: '3rem' }}>📧</span>
+        </SocialIcons>
+        <SocialIcons href="https://twitter.com/kennethez" target="_blank" rel="noopener noreferrer">
+          <span style={{ fontSize: '3rem' }}>🐦</span>
         </SocialIcons>
       </Div3>
     </Container>
-);
+  );
+};
 
 export default Header;

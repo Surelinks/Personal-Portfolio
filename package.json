@@ -1,21 +1,24 @@
 {
-  "name": "portfolio_nextjs",
-  "version": "0.1.0",
+  "name": "kenneth-ezenwanne-portfolio",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build ",
-    "start": "next start"
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "next": "^13.4.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.2.0",
-    "styled-components": "^5.3.0",
-    "styled-normalize": "^8.0.7"
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-icons": "^5.2.0",
+    "styled-components": "^5.3.11",
+    "@babel/runtime": "^7.24.0"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.39.0"
+    "@netlify/plugin-nextjs": "^4.41.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.0"
   }
 }

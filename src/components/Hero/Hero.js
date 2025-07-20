@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Section, SectionText, SectionTitle } from '../../styles/GlobalComponents';
-import Button from '../../styles/GlobalComponents/Button';
 import { LeftSection } from './HeroStyles';
 
 const Hero = (props) => (
@@ -9,15 +8,30 @@ const Hero = (props) => (
     <Section row nopadding>
       <LeftSection>
         <SectionTitle main center>
-          Welcome To Kenneth's <br />
-          Personal Portfolio
+          Kenneth Ezenwanne <br />
+          Senior Systems Engineer & Innovation Director
         </SectionTitle>
         <SectionText>
-         Competent in Web Dev, Blockchain Tech, Microsoft office, 
-        AdobeSuites, IBM cloud and Avolite Lighting software. Strives for excellence towards providing solutions to challenges personally and as a team to achieve organizational goals.
-
+          Experienced Systems Engineer specializing in cloud infrastructure, AI/ML implementation, 
+          and digital transformation. Expert in full-stack development, blockchain technology, 
+          cybersecurity, and DevOps practices. Passionate about leveraging cutting-edge technology 
+          to solve complex engineering challenges and drive organizational excellence.
         </SectionText>
-        <Button onClick={props.handleClick}>Learn More</Button>
+        <div style={{ marginTop: '2rem' }}>
+          <button style={{ 
+            padding: '12px 24px', 
+            backgroundColor: '#3B82F6', 
+            color: 'white', 
+            border: 'none', 
+            borderRadius: '8px', 
+            cursor: 'pointer',
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            transition: 'all 0.3s ease'
+          }}>
+            Explore My Work
+          </button>
+        </div>
       </LeftSection>
     </Section>
   </>
