@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import { Container, Div1, Div2, Div3, NavLink, SocialIcons } from './HeaderStyles';
 
 const Header = () => {
@@ -38,22 +38,28 @@ const Header = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink onClick={() => scrollToSection('blog')}>
+            Blog
+          </NavLink>
+        </li>
+        <li>
           <NavLink onClick={() => scrollToSection('contact')}>
             Contact
           </NavLink>
         </li>        
       </Div2>
       <Div3>
-        <SocialIcons href="https://github.com/kennethez" target="_blank" rel="noopener noreferrer">
+        <ThemeToggle style={{ marginRight: '1rem' }} />
+        <SocialIcons href="https://github.com/kennethez" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
           <span style={{ fontSize: '3rem' }}>🐙</span>
         </SocialIcons>
-        <SocialIcons href="https://linkedin.com/in/kenneth-ezenwanne" target="_blank" rel="noopener noreferrer">
+        <SocialIcons href="https://linkedin.com/in/kenneth-ezenwanne" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
           <span style={{ fontSize: '3rem' }}>💼</span>
         </SocialIcons>
-        <SocialIcons href="mailto:kenneth.ezenwanne@gmail.com">
+        <SocialIcons href="mailto:kenneth.ezenwanne@gmail.com" aria-label="Send Email">
           <span style={{ fontSize: '3rem' }}>📧</span>
         </SocialIcons>
-        <SocialIcons href="https://twitter.com/kennethez" target="_blank" rel="noopener noreferrer">
+        <SocialIcons href="https://twitter.com/kennethez" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile">
           <span style={{ fontSize: '3rem' }}>🐦</span>
         </SocialIcons>
       </Div3>

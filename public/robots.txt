@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://kennethez.github.io/Personal-Portfolio/sitemap.xml
+
+# Disallow admin or private areas (if any)
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /assets/
+
+# Allow important pages
+Allow: /
+Allow: /projects
+Allow: /blog
+Allow: /contact
+
+# Crawl-delay (optional)
+Crawl-delay: 1

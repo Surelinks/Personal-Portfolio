@@ -1,7 +1,127 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { projects } from '../constants/constants';
+import { 
+  FiMail, FiLinkedin, FiGithub, FiExternalLink, FiMapPin, FiBook, FiUser, FiCode,
+  FiBriefcase, FiArrowUpCircle, FiTrendingUp, FiAward, FiUsers, FiZap,
+  FiDatabase, FiCloud, FiShield, FiCpu, FiMonitor, FiServer, FiGitBranch, FiSettings,
+  FiHome, FiAnchor, FiGitCommit, FiStar, FiUserCheck, FiTool
+} from 'react-icons/fi';
+import {
+  SiReact, SiNextdotjs, SiTypescript, SiPython, SiSolidity, SiEthereum, SiAws,
+  SiDocker, SiMongodb, SiPostgresql, SiNodedotjs, SiJavascript
+} from 'react-icons/si';
 
 const Home = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+
+  useEffect(() => {
+    setIsLoaded(true);
+    
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Animated counter component
+  const AnimatedCounter = ({ end, duration = 2000, suffix = "" }) => {
+    const [count, setCount] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !isVisible) {
+            setIsVisible(true);
+            let startTime;
+            const animate = (currentTime) => {
+              if (!startTime) startTime = currentTime;
+              const progress = Math.min((currentTime - startTime) / duration, 1);
+              const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+              setCount(Math.floor(easeOutQuart * end));
+              
+              if (progress < 1) {
+                requestAnimationFrame(animate);
+              }
+            };
+            requestAnimationFrame(animate);
+          }
+        },
+        { threshold: 0.5 }
+      );
+
+      const element = document.getElementById(`counter-${end}`);
+      if (element) observer.observe(element);
+
+      return () => observer.disconnect();
+    }, [end, duration, isVisible]);
+
+    return (
+      <span id={`counter-${end}`}>
+        {count}{suffix}
+      </span>
+    );
+  };
+
+  // Floating particles background
+  const FloatingParticles = () => {
+    const particles = Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 3 + 1,
+      speed: Math.random() * 0.5 + 0.2,
+      delay: Math.random() * 5,
+    }));
+
+    return (
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: -1,
+        overflow: 'hidden'
+      }}>
+        {particles.map((particle) => (
+          <motion.div
+            key={particle.id}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ 
+              opacity: [0.4, 0.8, 0.4],
+              scale: [1, 1.2, 1],
+              y: [0, -20, 0]
+            }}
+            transition={{
+              duration: 8 + particle.speed * 10,
+              repeat: Infinity,
+              delay: particle.delay,
+              ease: "easeInOut"
+            }}
+            style={{
+              position: 'absolute',
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              background: 'radial-gradient(circle, rgba(59, 130, 246, 0.6), rgba(6, 182, 212, 0.3))',
+              borderRadius: '50%',
+            }}
+          />
+        ))}
+      </div>
+    );
+  };
+
   return (
     <>
       <Head>
@@ -13,23 +133,59 @@ const Home = () => {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
       </Head>
 
-      <div style={{ 
-        fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-        background: 'linear-gradient(180deg, #0a0a0b 0%, #111113 25%, #1a1a1d 100%)',
-        color: '#ffffff',
-        minHeight: '100vh',
-        lineHeight: 1.6
-      }}>
-        {/* Header */}
-        <header style={{
-          padding: 'clamp(1rem, 2vw, 1.5rem) clamp(1rem, 4vw, 2rem)',
-          borderBottom: '1px solid rgba(255,255,255,0.08)',
-          position: 'sticky',
-          top: 0,
-          background: 'rgba(10, 10, 11, 0.95)',
-          backdropFilter: 'blur(20px)',
-          zIndex: 100
-        }}>
+      <FloatingParticles />
+      
+      {/* Animated cursor follower */}
+      <motion.div 
+        animate={{
+          x: mousePosition.x - 10,
+          y: mousePosition.y - 10,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 500,
+          damping: 28
+        }}
+        style={{
+          position: 'fixed',
+          width: '20px',
+          height: '20px',
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.8), transparent)',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          zIndex: 9999,
+          mixBlendMode: 'screen'
+        }}
+      />
+
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        style={{ 
+          fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+          background: 'linear-gradient(180deg, #0a0a0b 0%, #111113 25%, #1a1a1d 100%)',
+          color: '#ffffff',
+          minHeight: '100vh',
+          lineHeight: 1.6,
+          position: 'relative'
+        }}
+      >
+        {/* Animated Header */}
+        <motion.header 
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{
+            padding: 'clamp(1rem, 2vw, 1.5rem) clamp(1rem, 4vw, 2rem)',
+            borderBottom: '1px solid rgba(255,255,255,0.08)',
+            position: 'sticky',
+            top: 0,
+            background: 'rgba(10, 10, 11, 0.95)',
+            backdropFilter: 'blur(20px)',
+            zIndex: 100
+          }}
+        >
           <nav style={{ 
             display: 'flex', 
             justifyContent: 'space-between', 
@@ -37,59 +193,71 @@ const Home = () => {
             maxWidth: '1400px',
             margin: '0 auto'
           }}>
-            <div style={{ 
-              fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', 
-              fontWeight: '700', 
-              color: '#ffffff',
-              fontFamily: 'JetBrains Mono, monospace'
-            }}>
+            <motion.div 
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              style={{ 
+                fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', 
+                fontWeight: '700', 
+                color: '#ffffff',
+                fontFamily: 'JetBrains Mono, monospace',
+                cursor: 'pointer'
+              }}
+              whileHover={{ scale: 1.1, rotate: 5 }}
+            >
               EK.
-            </div>
+            </motion.div>
             <div style={{ 
               display: 'flex', 
               gap: 'clamp(1rem, 3vw, 2.5rem)', 
               alignItems: 'center',
               flexWrap: 'wrap'
             }}>
-              <a href="#about" style={{ 
-                color: 'rgba(255,255,255,0.7)', 
-                textDecoration: 'none', 
-                fontWeight: '500',
-                fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
-                transition: 'color 0.2s ease',
-                ':hover': { color: '#ffffff' }
-              }}>About</a>
-              <a href="#skills" style={{ 
-                color: 'rgba(255,255,255,0.7)', 
-                textDecoration: 'none', 
-                fontWeight: '500',
-                fontSize: 'clamp(0.9rem, 2vw, 1.1rem)'
-              }}>Expertise</a>
-              <a href="#timeline" style={{ 
-                color: 'rgba(255,255,255,0.7)', 
-                textDecoration: 'none', 
-                fontWeight: '500',
-                fontSize: 'clamp(0.9rem, 2vw, 1.1rem)'
-              }}>Experience</a>
-              <a href="#projects" style={{ 
-                color: 'rgba(255,255,255,0.7)', 
-                textDecoration: 'none', 
-                fontWeight: '500',
-                fontSize: 'clamp(0.9rem, 2vw, 1.1rem)'
-              }}>Projects</a>
-              <a href="#contact" style={{ 
-                padding: 'clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 2.5vw, 1.5rem)',
-                background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-                color: '#ffffff',
-                textDecoration: 'none',
-                borderRadius: '6px',
-                fontWeight: '500',
-                fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
-                transition: 'all 0.2s ease'
-              }}>Contact</a>
+              {['About', 'Expertise', 'Experience', 'Projects'].map((item, index) => (
+                <motion.a 
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.1 * index, duration: 0.5 }}
+                  whileHover={{ y: -2, color: '#3b82f6' }}
+                  style={{ 
+                    color: 'rgba(255,255,255,0.7)', 
+                    textDecoration: 'none', 
+                    fontWeight: '500',
+                    fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  {item}
+                </motion.a>
+              ))}
+              <motion.a 
+                href="#contact"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                style={{ 
+                  padding: 'clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 2.5vw, 1.5rem)',
+                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                  borderRadius: '6px',
+                  fontWeight: '500',
+                  fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
+                  boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+              >
+                Contact
+              </motion.a>
             </div>
           </nav>
-        </header>
+        </motion.header>
 
         {/* Hero Section - Professional Layout */}
         <section id="about" style={{ 
@@ -255,7 +423,7 @@ const Home = () => {
                 while building next-generation blockchain and AI solutions for global markets.
               </p>
 
-              {/* Quick Stats */}
+              {/* Quick Stats with Icons */}
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
@@ -263,40 +431,62 @@ const Home = () => {
                 marginBottom: 'clamp(2rem, 4vw, 3rem)'
               }}>
                 {[
-                  { label: 'Experience', value: '6+ Years', emoji: '💼' },
-                  { label: 'Current Focus', value: 'Critical Infrastructure', emoji: '⚡' },
-                  { label: 'Education', value: 'BSc + Masters', emoji: '🎓' },
-                  { label: 'Specialization', value: 'Blockchain & AI', emoji: '🚀' }
-                ].map((stat, index) => (
-                  <div key={index} style={{
-                    padding: 'clamp(1rem, 2.5vw, 1.5rem)',
-                    background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    borderRadius: '12px',
-                    transition: 'all 0.3s ease',
-                    cursor: 'pointer',
-                    textAlign: 'center',
-                    backdropFilter: 'blur(10px)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = '0 15px 30px rgba(59, 130, 246, 0.2)';
-                    e.currentTarget.style.border = '1px solid rgba(59, 130, 246, 0.3)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = 'none';
-                    e.currentTarget.style.border = '1px solid rgba(255,255,255,0.06)';
-                  }}>
-                    <div style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', marginBottom: '0.5rem' }}>{stat.emoji}</div>
-                    <div style={{ fontSize: 'clamp(1rem, 2.5vw, 1.3rem)', fontWeight: '700', color: '#3b82f6', marginBottom: '0.25rem' }}>
-                      {stat.value}
-                    </div>
-                    <div style={{ fontSize: 'clamp(0.8rem, 2vw, 1rem)', color: 'rgba(255,255,255,0.7)' }}>
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
+                  { label: 'Experience', value: '6+ Years', icon: FiBriefcase, color: '#f59e0b' },
+                  { label: 'Current Focus', value: 'Critical Infrastructure', icon: FiZap, color: '#3b82f6' },
+                  { label: 'Education', value: 'BSc + Masters', icon: FiAward, color: '#06b6d4' },
+                  { label: 'Specialization', value: 'Blockchain & AI', icon: FiArrowUpCircle, color: '#8b5cf6' }
+                ].map((stat, index) => {
+                  const IconComponent = stat.icon;
+                  return (
+                    <motion.div 
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 * index, duration: 0.6 }}
+                      whileHover={{ 
+                        y: -8, 
+                        scale: 1.05,
+                        boxShadow: `0 15px 30px ${stat.color}40`
+                      }}
+                      style={{
+                        padding: 'clamp(1rem, 2.5vw, 1.5rem)',
+                        background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
+                        border: '1px solid rgba(255,255,255,0.15)',
+                        borderRadius: '12px',
+                        cursor: 'pointer',
+                        textAlign: 'center',
+                        backdropFilter: 'blur(10px)',
+                        position: 'relative',
+                        overflow: 'hidden'
+                      }}
+                    >
+                      <motion.div
+                        whileHover={{ rotate: 360, scale: 1.2 }}
+                        transition={{ duration: 0.6 }}
+                        style={{ 
+                          display: 'flex',
+                          justifyContent: 'center',
+                          marginBottom: '0.5rem'
+                        }}
+                      >
+                        <IconComponent 
+                          size={32} 
+                          color={stat.color}
+                        />
+                      </motion.div>
+                      <div style={{ fontSize: 'clamp(1rem, 2.5vw, 1.3rem)', fontWeight: '700', color: stat.color, marginBottom: '0.25rem' }}>
+                        {stat.value.includes('6+') ? (
+                          <>
+                            <AnimatedCounter end={6} suffix="+" /> Years
+                          </>
+                        ) : stat.value}
+                      </div>
+                      <div style={{ fontSize: 'clamp(0.8rem, 2vw, 1rem)', color: 'rgba(255,255,255,0.7)' }}>
+                        {stat.label}
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
 
               {/* Professional Call-to-Action */}
@@ -372,86 +562,110 @@ const Home = () => {
           }}>
             {[
               {
-                icon: '🔌',
+                icon: FiZap,
                 title: 'Power Systems Engineering',
-                skills: ['SCADA Systems', 'Grid Monitoring', 'Electrical Power Systems', 'Transmission Networks', 'Predictive Maintenance']
+                skills: ['SCADA Systems', 'Grid Monitoring', 'Electrical Power Systems', 'Transmission Networks', 'Predictive Maintenance'],
+                color: '#f59e0b'
               },
               {
-                icon: '💻',
+                icon: FiCode,
                 title: 'Software Development',
-                skills: ['Python', 'JavaScript (Node.js, React.js)', 'Solidity', 'HTML/CSS', 'MATLAB']
+                skills: ['Python', 'JavaScript (Node.js, React.js)', 'Solidity', 'HTML/CSS', 'MATLAB'],
+                color: '#3b82f6'
               },
               {
-                icon: '☁️',
+                icon: FiCloud,
                 title: 'Cloud & DevOps',
-                skills: ['AWS', 'Docker', 'CI/CD Pipelines', 'Git', 'Azure (Learning)']
+                skills: ['AWS', 'Docker', 'CI/CD Pipelines', 'Git', 'Azure (Learning)'],
+                color: '#10b981'
               },
               {
-                icon: '🔗',
+                icon: SiEthereum,
                 title: 'Blockchain & Web3',
-                skills: ['Ethereum', 'Smart Contracts', 'Hardhat', 'Ethers.js', 'NFT Development', 'DeFi']
+                skills: ['Ethereum', 'Smart Contracts', 'Hardhat', 'Ethers.js', 'NFT Development', 'DeFi'],
+                color: '#8b5cf6'
               },
               {
-                icon: '�️',
+                icon: FiDatabase,
                 title: 'Databases',
-                skills: ['PostgreSQL', 'MongoDB', 'SQL', 'Data Analysis']
+                skills: ['PostgreSQL', 'MongoDB', 'SQL', 'Data Analysis'],
+                color: '#06b6d4'
               },
               {
-                icon: '�',
+                icon: FiShield,
                 title: 'Cybersecurity',
-                skills: ['SIEM', 'IDS', 'Threat Detection', 'Ethical Hacking', 'Vulnerability Analysis']
+                skills: ['SIEM', 'IDS', 'Threat Detection', 'Ethical Hacking', 'Vulnerability Analysis'],
+                color: '#ef4444'
               },
               {
-                icon: '🤖',
+                icon: FiCpu,
                 title: 'AI & Machine Learning',
-                skills: ['IBM Watson APIs', 'OpenCV', 'Computer Vision', 'AI Applications']
+                skills: ['IBM Watson APIs', 'OpenCV', 'Computer Vision', 'AI Applications'],
+                color: '#f59e0b'
               },
               {
-                icon: '�️',
+                icon: FiSettings,
                 title: 'Tools & Platforms',
-                skills: ['Power BI', 'Bubble.io', 'JIRA', 'SCADA', 'POS Systems']
+                skills: ['Power BI', 'Bubble.io', 'JIRA', 'SCADA', 'POS Systems'],
+                color: '#64748b'
               }
-            ].map((skill, index) => (
-              <div key={index} style={{ 
-                padding: 'clamp(1.5rem, 3vw, 2rem)', 
-                background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
-                borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.15)',
-                backdropFilter: 'blur(15px)',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(59, 130, 246, 0.15)';
-                e.currentTarget.style.border = '1px solid rgba(59, 130, 246, 0.3)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.border = '1px solid rgba(255,255,255,0.1)';
-              }}>
-                <div style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '1rem' }}>{skill.icon}</div>
-                <h3 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', fontWeight: '600', marginBottom: '1rem', color: 'white' }}>
-                  {skill.title}
-                </h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                  {skill.skills.map((tech, techIndex) => (
-                    <span key={techIndex} style={{ 
-                      padding: 'clamp(0.4rem, 1vw, 0.5rem) clamp(0.75rem, 2vw, 1rem)',
-                      background: 'rgba(59, 130, 246, 0.2)',
-                      color: '#3B82F6',
-                      borderRadius: '20px',
-                      fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
-                      fontWeight: '500'
-                    }}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+            ].map((skill, index) => {
+              const IconComponent = skill.icon;
+              return (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  style={{ 
+                    padding: 'clamp(1.5rem, 3vw, 2rem)', 
+                    background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
+                    borderRadius: '16px',
+                    border: '1px solid rgba(255,255,255,0.15)',
+                    backdropFilter: 'blur(15px)',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+                    borderColor: skill.color + '40'
+                  }}
+                >
+                  <motion.div
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                    style={{ 
+                      display: 'flex',
+                      justifyContent: 'center',
+                      marginBottom: '1rem'
+                    }}
+                  >
+                    <IconComponent size={48} color={skill.color} />
+                  </motion.div>
+                  <h3 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', fontWeight: '600', marginBottom: '1rem', color: 'white' }}>
+                    {skill.title}
+                  </h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    {skill.skills.map((tech, techIndex) => (
+                      <motion.span 
+                        key={techIndex}
+                        whileHover={{ scale: 1.1 }}
+                        style={{ 
+                          padding: 'clamp(0.4rem, 1vw, 0.5rem) clamp(0.75rem, 2vw, 1rem)',
+                          background: skill.color + '20',
+                          color: skill.color,
+                          borderRadius: '20px',
+                          fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
+                          fontWeight: '500',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </section>
 
@@ -495,7 +709,8 @@ const Home = () => {
                 description: 'SCADA systems, grid reliability, predictive maintenance',
                 achievements: '30% reliability improvement',
                 tech: ['SCADA', 'SQL', 'Power Systems'],
-                emoji: '⚡'
+                icon: FiZap,
+                color: '#f59e0b'
               },
               {
                 year: '2023 - Present',
@@ -505,7 +720,8 @@ const Home = () => {
                 description: 'End-to-end rental platform for Canadian communities',
                 achievements: '40% deployment time reduction',
                 tech: ['Bubble.io', 'API Integration', 'No-Code'],
-                emoji: '🏠'
+                icon: FiHome,
+                color: '#10b981'
               },
               {
                 year: '2020 - Present',
@@ -515,7 +731,8 @@ const Home = () => {
                 description: 'AI applications with IBM Watson, computer vision systems',
                 achievements: 'Enterprise AI solutions',
                 tech: ['IBM Watson', 'OpenCV', 'Python'],
-                emoji: '🤖'
+                icon: FiCpu,
+                color: '#06b6d4'
               },
               {
                 year: '2019 - Present',
@@ -525,7 +742,8 @@ const Home = () => {
                 description: 'DeFi platforms, NFT marketplaces, smart contracts',
                 achievements: 'Multiple DeFi projects delivered',
                 tech: ['Solidity', 'Ethereum', 'React'],
-                emoji: '🔗'
+                icon: FiGitCommit,
+                color: '#8b5cf6'
               },
               {
                 year: '2022 - 2023',
@@ -535,7 +753,8 @@ const Home = () => {
                 description: 'Offshore vessel operations, electrical systems',
                 achievements: '95% maintenance efficiency',
                 tech: ['Electrical Systems', 'Marine Operations'],
-                emoji: '⚓'
+                icon: FiAnchor,
+                color: '#3b82f6'
               },
               {
                 year: '2019 - 2021',
@@ -545,7 +764,8 @@ const Home = () => {
                 description: 'Process re-engineering, productivity optimization',
                 achievements: '40% productivity increase',
                 tech: ['POS Systems', 'Process Management'],
-                emoji: '💼'
+                icon: FiBriefcase,
+                color: '#ef4444'
               }
             ].map((item, index) => (
               <div key={index} style={{
@@ -580,7 +800,20 @@ const Home = () => {
                   borderBottom: '2px solid rgba(59, 130, 246, 0.3)'
                 }}
                 className="timeline-year">
-                  <div style={{ fontSize: 'clamp(1.8rem, 4vw, 2.2rem)', marginBottom: '0.5rem' }}>{item.emoji}</div>
+                  <div style={{ 
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginBottom: '0.5rem',
+                    padding: 'clamp(0.75rem, 2vw, 1rem)',
+                    borderRadius: '50%',
+                    backgroundColor: `${item.color}20`,
+                    width: 'clamp(60px, 8vw, 80px)',
+                    height: 'clamp(60px, 8vw, 80px)',
+                    margin: '0 auto'
+                  }}>
+                    <item.icon size={32} color={item.color} />
+                  </div>
                   <div style={{ 
                     fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', 
                     fontWeight: '600',
@@ -698,63 +931,8 @@ const Home = () => {
             maxWidth: '1200px',
             margin: '0 auto'
           }}>
-            {[
-              {
-                title: 'MyLet Rental Platform',
-                category: 'No-Code Development',
-                description: 'End-to-end rental platform connecting sublet tenants with homeowners in underserved Canadian communities.',
-                tech: ['Bubble.io', 'API Integration', 'Workflow Automation'],
-                metrics: '40% deployment reduction',
-                status: 'Production',
-                image: '/images/projects.jpeg'
-              },
-              {
-                title: 'SCADA Grid Monitoring',
-                category: 'Power Systems',
-                description: 'Real-time power grid monitoring system with predictive maintenance capabilities for critical infrastructure operations.',
-                tech: ['SCADA', 'SQL', 'Predictive Analytics'],
-                metrics: '30% reliability improvement',
-                status: 'Enterprise',
-                image: '/images/robo.png'
-              },
-              {
-                title: 'NFT Marketplace DApp',
-                category: 'Blockchain',
-                description: 'Decentralized marketplace for digital assets with smart contract integration and seamless trading.',
-                tech: ['Solidity', 'Ethereum', 'React', 'Web3'],
-                metrics: 'Multi-chain support',
-                status: 'Live',
-                image: '/images/nft.png'
-              },
-              {
-                title: 'AI Computer Vision',
-                category: 'Machine Learning',
-                description: 'Real-time object detection system using IBM Watson APIs and OpenCV for enterprise applications.',
-                tech: ['IBM Watson', 'OpenCV', 'Python', 'TensorFlow'],
-                metrics: '95% accuracy rate',
-                status: 'Enterprise',
-                image: '/images/smart-brain.png'
-              },
-              {
-                title: 'Crypto Transaction Platform',
-                category: 'Blockchain',
-                description: 'Secure global platform for Ethereum transfers with custom metadata and transaction tracking.',
-                tech: ['Ethereum', 'Web3.js', 'Node.js', 'React'],
-                metrics: 'Global ETH transfers',
-                status: 'Live',
-                image: '/images/krypt.png'
-              },
-              {
-                title: 'Virtual Reality Training',
-                category: 'Immersive Tech',
-                description: 'Educational VR application for power systems training with realistic 3D environments.',
-                tech: ['Unity', 'C#', 'WebGL', '3D Modeling'],
-                metrics: 'Training efficiency +60%',
-                status: 'Beta',
-                image: '/images/virtual.png'
-              }
-            ].map((project, index) => (
-              <div key={index} style={{
+            {projects.map((project, index) => (
+              <div key={project.id} style={{
                 background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
                 border: '1px solid rgba(255,255,255,0.15)',
                 borderRadius: '16px',
@@ -764,6 +942,7 @@ const Home = () => {
                 backdropFilter: 'blur(15px)',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
               }}
+              // onClick={() => openProjectModal(project)}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
                 e.currentTarget.style.boxShadow = '0 30px 60px rgba(59, 130, 246, 0.25)';
@@ -787,12 +966,9 @@ const Home = () => {
                     top: '1rem',
                     right: '1rem',
                     padding: 'clamp(0.4rem, 1vw, 0.5rem) clamp(0.75rem, 2vw, 1rem)',
-                    background: project.status === 'Live' ? 'rgba(34, 197, 94, 0.2)' : 
-                               project.status === 'Production' ? 'rgba(59, 130, 246, 0.2)' :
-                               project.status === 'Enterprise' ? 'rgba(147, 51, 234, 0.2)' : 'rgba(249, 115, 22, 0.2)',
-                    color: project.status === 'Live' ? '#22c55e' : 
-                           project.status === 'Production' ? '#3b82f6' :
-                           project.status === 'Enterprise' ? '#9333ea' : '#f97316',
+                    background: project.status === 'Production' ? 'rgba(34, 197, 94, 0.2)' : 
+                               'rgba(59, 130, 246, 0.2)',
+                    color: project.status === 'Production' ? '#22c55e' : '#3b82f6',
                     borderRadius: '12px',
                     fontSize: 'clamp(0.8rem, 2vw, 0.95rem)',
                     fontWeight: '600',
@@ -854,7 +1030,7 @@ const Home = () => {
 
                   {/* Tech Stack */}
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                    {project.tech.map((tech, techIndex) => (
+                    {project.tags.map((tech, techIndex) => (
                       <span key={techIndex} style={{ 
                         padding: 'clamp(0.2rem, 0.8vw, 0.25rem) clamp(0.6rem, 1.5vw, 0.75rem)',
                         background: 'rgba(59, 130, 246, 0.1)',
@@ -866,6 +1042,20 @@ const Home = () => {
                         {tech}
                       </span>
                     ))}
+                  </div>
+
+                  {/* Call to Action */}
+                  <div style={{
+                    marginTop: '1.5rem',
+                    padding: '0.75rem',
+                    textAlign: 'center',
+                    background: 'rgba(59, 130, 246, 0.1)',
+                    borderRadius: '8px',
+                    color: '#3b82f6',
+                    fontSize: '0.9rem',
+                    fontWeight: '500'
+                  }}>
+                    Click to view details →
                   </div>
                 </div>
               </div>
@@ -913,7 +1103,7 @@ const Home = () => {
             {[
               {
                 category: 'Power Systems',
-                emoji: '⚡',
+                icon: FiZap,
                 color: '#f59e0b',
                 bgColor: 'rgba(245, 158, 11, 0.1)',
                 skills: [
@@ -925,7 +1115,7 @@ const Home = () => {
               },
               {
                 category: 'Blockchain & Web3',
-                emoji: '🔗',
+                icon: FiGitBranch,
                 color: '#8b5cf6',
                 bgColor: 'rgba(139, 92, 246, 0.1)',
                 skills: [
@@ -937,7 +1127,7 @@ const Home = () => {
               },
               {
                 category: 'AI & Machine Learning',
-                emoji: '🤖',
+                icon: FiCpu,
                 color: '#06b6d4',
                 bgColor: 'rgba(6, 182, 212, 0.1)',
                 skills: [
@@ -949,7 +1139,7 @@ const Home = () => {
               },
               {
                 category: 'Frontend Development',
-                emoji: '💻',
+                icon: FiMonitor,
                 color: '#3b82f6',
                 bgColor: 'rgba(59, 130, 246, 0.1)',
                 skills: [
@@ -961,7 +1151,7 @@ const Home = () => {
               },
               {
                 category: 'Backend & Cloud',
-                emoji: '☁️',
+                icon: FiCloud,
                 color: '#10b981',
                 bgColor: 'rgba(16, 185, 129, 0.1)',
                 skills: [
@@ -973,7 +1163,7 @@ const Home = () => {
               },
               {
                 category: 'No-Code & Automation',
-                emoji: '🔧',
+                icon: FiTool,
                 color: '#ef4444',
                 bgColor: 'rgba(239, 68, 68, 0.1)',
                 skills: [
@@ -1026,7 +1216,7 @@ const Home = () => {
                     fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
                     flexShrink: 0
                   }}>
-                    {tech.emoji}
+                    <tech.icon size={24} color="white" />
                   </div>
                   <h3 style={{ 
                     fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', 
@@ -1117,32 +1307,38 @@ const Home = () => {
             {[
               {
                 category: 'Recent Certifications (2024)',
-                icon: '🏆',
+                icon: FiAward,
+                color: '#f59e0b',
                 items: ['Google Cybersecurity Professional Certificate', 'AIG Shields Up: Cybersecurity Certificate', 'Mastercard Cybersecurity Certificate', 'COREN Certified Engineer']
               },
               {
                 category: 'Professional Memberships',
-                icon: '🎓',
+                icon: FiUserCheck,
+                color: '#3b82f6',
                 items: ['MNSE - Nigerian Society of Engineers', 'COREN Member', 'McKinsey Forward Program Graduate']
               },
               {
                 category: 'Blockchain & AI Certifications',
-                icon: '�',
+                icon: FiCpu,
+                color: '#8b5cf6',
                 items: ['Ethereum 101 Certificate (Cadana)', 'IBM Applied AI Professional Certificate', 'DeFi Talents Program (2025)']
               },
               {
                 category: 'Cloud & DevOps',
-                icon: '☁️',
+                icon: FiCloud,
+                color: '#10b981',
                 items: ['Cloud Computing (Coursera)', 'AWS Learning Path', 'DevOps & CI/CD Expertise']
               },
               {
                 category: 'Maritime Certifications',
-                icon: '⚓',
+                icon: FiAnchor,
+                color: '#06b6d4',
                 items: ['HUET, ISPS, OTF, PSCRB', 'STCW, MOTORMAN, RFPEW', 'Offshore Operations Certified']
               },
               {
                 category: 'Leadership & Management',
-                icon: '👥',
+                icon: FiUsers,
+                color: '#ef4444',
                 items: ['Team Lead - Powerworld Ministries (2019-Present)', 'Operations Manager Experience', 'McKinsey Leadership Program']
               }
             ].map((achievement, index) => (
@@ -1155,7 +1351,19 @@ const Home = () => {
                 textAlign: 'center',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
               }}>
-                <div style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '1rem' }}>{achievement.icon}</div>
+                <div style={{ 
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: 'clamp(60px, 8vw, 80px)',
+                  height: 'clamp(60px, 8vw, 80px)',
+                  backgroundColor: `${achievement.color}20`,
+                  borderRadius: '50%',
+                  margin: '0 auto 1rem',
+                  padding: 'clamp(0.75rem, 2vw, 1rem)'
+                }}>
+                  <achievement.icon size={32} color={achievement.color} />
+                </div>
                 <h3 style={{ 
                   fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)', 
                   fontWeight: '600', 
@@ -1189,6 +1397,11 @@ const Home = () => {
           </div>
         </section>
 
+        {/* Blog Section */}
+        {/* <div id="blog">
+          <BlogSection />
+        </div> */}
+
         {/* Contact Section */}
         <section id="contact" style={{ 
           padding: 'clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem)',
@@ -1216,15 +1429,21 @@ const Home = () => {
             Ready to collaborate on innovative projects or discuss technology solutions? 
             Let's explore opportunities together.
           </p>
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'center', 
-            gap: 'clamp(1rem, 3vw, 2rem)',
-            flexWrap: 'wrap'
-          }}
-          className="contact-buttons">
-            <a 
-              href="mailto:fumsamuel@gmail.com" 
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            style={{ 
+              display: 'flex', 
+              justifyContent: 'center', 
+              gap: 'clamp(1rem, 3vw, 2rem)',
+              flexWrap: 'wrap'
+            }}
+          >
+            <motion.a 
+              href="mailto:fumsamuel@gmail.com"
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
               style={{ 
                 padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)', 
                 backgroundColor: '#3B82F6', 
@@ -1232,20 +1451,23 @@ const Home = () => {
                 textDecoration: 'none',
                 borderRadius: '8px',
                 fontWeight: '600',
-                transition: 'all 0.3s ease',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem',
+                gap: '0.75rem',
                 fontSize: 'clamp(0.9rem, 2vw, 1rem)',
-                minWidth: 'fit-content'
+                minWidth: 'fit-content',
+                boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)'
               }}
             >
+              <FiMail size={20} />
               Email Me
-            </a>
-            <a 
-              href="https://linkedin.com/in/ezenwanne-kenneth/" 
+            </motion.a>
+            <motion.a 
+              href="https://linkedin.com/in/kenneth-ezenwanne" 
               target="_blank" 
               rel="noopener noreferrer"
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
               style={{ 
                 padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)', 
                 border: '1px solid rgba(255,255,255,0.2)', 
@@ -1253,39 +1475,27 @@ const Home = () => {
                 textDecoration: 'none',
                 borderRadius: '8px',
                 fontWeight: '600',
-                transition: 'all 0.3s ease',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem',
+                gap: '0.75rem',
                 fontSize: 'clamp(0.9rem, 2vw, 1rem)',
-                minWidth: 'fit-content'
+                minWidth: 'fit-content',
+                boxShadow: '0 4px 15px rgba(255,255,255,0.1)'
               }}
             >
+              <FiLinkedin size={20} />
               LinkedIn
-            </a>
-            <a 
-              href="https://github.com/kennethez" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={{ 
-                padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)', 
-                border: '1px solid rgba(255,255,255,0.2)', 
-                color: 'rgba(255,255,255,0.9)', 
-                textDecoration: 'none',
-                borderRadius: '8px',
-                fontWeight: '600',
-                transition: 'all 0.3s ease',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
-                minWidth: 'fit-content'
-              }}
-            >
-              GitHub
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
+          {/* <ContactForm /> */}
         </section>
+
+        {/* Project Modal */}
+        {/* <ProjectModal 
+          project={selectedProject}
+          isOpen={isModalOpen}
+          onClose={closeProjectModal}
+        /> */}
 
         {/* Footer */}
         <footer style={{ 
@@ -1296,7 +1506,7 @@ const Home = () => {
         }}>
           <p>© 2025 Kenneth Ezenwanne - Engineering Excellence Through Innovation</p>
         </footer>
-      </div>
+      </motion.div>
 
       <style jsx global>{`
         * {
@@ -1313,6 +1523,33 @@ const Home = () => {
           margin: 0;
           font-family: 'Inter', sans-serif;
           overflow-x: hidden;
+        }
+
+        /* Glow animation for logo */
+        @keyframes glow {
+          0%, 100% {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+          }
+          50% {
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(6, 182, 212, 0.6);
+          }
+        }
+
+        /* Pulse animation for profile image */
+        @keyframes profilePulse {
+          0%, 100% {
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3);
+          }
+          50% {
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5), 0 0 30px rgba(6, 182, 212, 0.4);
+          }
+        }
+
+        /* Gradient background animation */
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
 
         /* Mobile-specific navigation adjustments */

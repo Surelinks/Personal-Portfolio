@@ -1,0 +1,61 @@
+{
+  "name": "Kenneth Ezenwanne - Portfolio",
+  "short_name": "Kenneth Portfolio",
+  "description": "BSc Electrical Engineering, MS Software Engineering - Advancing power systems stability and safeguarding critical infrastructure through innovative technology solutions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["portfolio", "engineering", "technology"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/portfolio-screenshot.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "label": "Portfolio Homepage"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Projects",
+      "short_name": "Projects",
+      "url": "/#projects",
+      "icons": [
+        {
+          "src": "/favicon.ico",
+          "sizes": "32x32",
+          "type": "image/x-icon"
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "url": "/#contact",
+      "icons": [
+        {
+          "src": "/favicon.ico",
+          "sizes": "32x32",
+          "type": "image/x-icon"
+        }
+      ]
+    }
+  ]
+}
