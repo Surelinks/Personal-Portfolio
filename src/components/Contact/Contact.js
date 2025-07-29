@@ -4,10 +4,10 @@ import { Section, SectionDivider, SectionTitle, SectionText } from '../../styles
 const Contact = () => (
   <Section id="contact">
     <SectionDivider />
-    <SectionTitle>Let's Connect</SectionTitle>
+    <SectionTitle>Let&apos;s Connect</SectionTitle>
     <SectionText>
       Ready to collaborate on innovative projects or discuss technology solutions? 
-      Let's explore opportunities together.
+      Let&apos;s explore opportunities together.
     </SectionText>
     <div style={{ 
       display: 'flex', 

@@ -220,7 +220,7 @@ const Blog = () => {
             <EmptyState>
               <EmptyTitle>Blog Coming Soon</EmptyTitle>
               <EmptyText>
-                I'm working on creating valuable content about power systems engineering, 
+                I&apos;m working on creating valuable content about power systems engineering, 
                 software development, and technology innovation. Check back soon!
               </EmptyText>
               <ComingSoonBadge>More Posts Coming Soon</ComingSoonBadge>

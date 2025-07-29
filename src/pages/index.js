@@ -1416,7 +1416,7 @@ const Home = () => {
             marginBottom: '2rem',
             color: '#3B82F6'
           }}>
-            Let's Connect
+            Let&apos;s Connect
           </h2>
           <p style={{ 
             fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)', 
@@ -1427,7 +1427,7 @@ const Home = () => {
             lineHeight: '1.6'
           }}>
             Ready to collaborate on innovative projects or discuss technology solutions? 
-            Let's explore opportunities together.
+            Let&apos;s explore opportunities together.
           </p>
           <motion.div 
             initial={{ opacity: 0, y: 30 }}

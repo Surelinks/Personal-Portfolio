@@ -188,9 +188,9 @@ const ContactForm = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Title>Let's Work Together</Title>
+      <Title>Let&apos;s Work Together</Title>
       <Subtitle>
-        Have a project in mind? I'd love to hear about it and discuss how we can bring your ideas to life.
+        Have a project in mind? I&apos;d love to hear about it and discuss how we can bring your ideas to life.
       </Subtitle>
 
       {isSuccess && (
